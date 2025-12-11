@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CameraFragment">
+
+    <!-- CAMERA PREVIEW -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="12dp"
+        app:implementationMode="performance"
+        app:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/scaleControls" />
+
+    <!-- SLIDER CONTAINER -->
+    <LinearLayout
+        android:id="@+id/scaleControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#22000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- BEV SCALE LABEL -->
+        <TextView
+            android:id="@+id/bevScaleLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BEV Output Scale"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <!-- BEV SCALE SLIDER -->
+        <SeekBar
+            android:id="@+id/bevScaleSeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="400"
+            android:progress="200" />
+
+        <!-- SPACER -->
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="12dp" />
+
+        <!-- MOBILE IMAGE SIZE LABEL -->
+        <TextView
+            android:id="@+id/inputScaleLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobile Image Size"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <!-- MOBILE IMAGE SCALE SLIDER -->
+        <SeekBar
+            android:id="@+id/inputScaleSeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="200"
+            android:progress="100" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

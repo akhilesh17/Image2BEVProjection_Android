@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".MainActivity">
+
+    <!-- 1. STATIC IMAGE VIEW (Main Display when Swapped) -->
+    <ImageView
+        android:id="@+id/mainImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        android:contentDescription="Main Display" />
+
+    <!-- 2. CAMERA PREVIEW (Live Feed) -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- 3. OVERLAY CARD (BEV Preview) -->
+    <!-- Using CardView for rounded corners and border effect -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bevCard"
+        android:layout_width="160dp"
+        android:layout_height="220dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#00000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Border Container -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_border_bg"
+            android:padding="2dp">
+
+            <ImageView
+                android:id="@+id/bevOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:background="#CC0F172A"
+                android:contentDescription="Overlay Output" />
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- 4. VISIBILITY TOGGLE BUTTON -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnToggleInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_view"
+        app:backgroundTint="#334155"
+        app:tint="#FFFFFF"
+        app:fabSize="mini"
+        android:contentDescription="Toggle Info"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 5. INFO & CONTROLS CONTAINER -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/infoContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#CC1E293B"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnToggleInfo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Sensor Info Text -->
+            <TextView
+                android:id="@+id/tvSensorInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:text="Waiting for sensors..." />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#33FFFFFF"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Height Control -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Height"
+                    android:textColor="#94A3B8"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="8dp"/>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/heightSlider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:valueFrom="0.5"
+                    android:valueTo="20.0"
+                    android:stepSize="0.1"
+                    android:value="1.5"
+                    app:thumbColor="#38BDF8"
+                    app:trackColorActive="#38BDF8"
+                    app:trackColorInactive="#33FFFFFF"
+                    app:tickVisible="false"/>
+            </LinearLayout>
+
+            <!-- Length Control -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="-8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dist  "
+                    android:textColor="#94A3B8"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="8dp"/>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/lengthSlider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:valueFrom="5.0"
+                    android:valueTo="30.0"
+                    android:stepSize="1.0"
+                    android:value="10.0"
+                    app:thumbColor="#38BDF8"
+                    app:trackColorActive="#38BDF8"
+                    app:trackColorInactive="#33FFFFFF"
+                    app:tickVisible="false"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
